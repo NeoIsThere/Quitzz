@@ -1,0 +1,76 @@
+.submit-your-own {
+  display: flex;
+  flex-direction: row;
+}
+
+.motivation-message {
+  font-size: 40px;
+}
+
+.motivation-message-desktop {
+  display: none;
+}
+
+.message{
+  margin-right: 10px;
+}
+
+.submit-your-own-text {
+  color: var(--clickable-text-color);
+  font-size: 12px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.help-icon {
+  font-size: 12px;
+}
+
+.placeholder-icon {
+  color: var(--clickable-text-color);
+  margin-right: 0.5em;
+}
+.editor-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.submit-button {
+  margin-left: 10px;
+}
+
+.from-user-container{
+  display: inline-block;
+}
+
+.from-user-inner-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 12px;
+  vertical-align: middle;
+}
+
+.verified-icon {
+  margin: 0 8px 0 2px;
+  transform: scale(1.15);
+}
+.verified-icon:hover {
+  color: var(--title-color);
+}
+
+.author {
+  vertical-align: middle;
+}
+
+@media screen and (min-width: 600px) {
+  .motivation-message {
+    display: block;
+    font-size: 60px;
+  }
+
+  .from-user-inner-container {
+    font-size: 16px;
+  }
+}

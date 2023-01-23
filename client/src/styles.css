@@ -1,0 +1,304 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  margin: 0;
+  font-family: Roboto, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-color);
+  background-color: var(--background-color);
+}
+
+a {
+  color: var(--text-color);
+}
+
+@font-face {
+  font-family: digital;
+  src: url(assets/fonts/DS-DIGII.ttf) format("opentype");
+}
+
+:root {
+  --primary: #311b92;
+  --text-color: #c1c1c1;
+  --dark-grey: #2f2f2f;
+  --dark-grey-3: #a8a8a8;
+  --clickable-text-color: #b4b4b4;
+  --message-color: #272727;
+  --my-message-color: #26333b;
+  --title-color: #b4b4b4;
+  --chat-color: #1d1d1d;
+  --grey: #7c7c7c;
+  --light-grey: #b3b3b3;
+  --background-color: #222222;
+  --light-background-color: #2f3146;
+  --very-light-background-color: #35374d;
+  --background-color-2: #272727;
+  --background-color-3: #181818;
+  --background-color-4: #171717;
+  --official-blue: #3573cf;
+  --arrow-back-color: #b1b1b1;
+  --gold: #817011;
+  --valid: #21b321;
+  --purple: #6c31ff;
+  --error-color: #af2828;
+
+  --neon-text-color: #f40;
+  --neon-border-color: #08f;
+}
+
+/*global classes*/
+
+.light-grey-border {
+  border: 4px solid var(--very-light-background-color);
+  border-radius: 10px;
+}
+
+.font-weight-light{
+  font-weight: 400;
+}
+
+.align-left {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.align-right {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.row-space-between {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.center-x-y {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.center-x {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.center-y {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.panel {
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  background-color: var(--light-background-color);
+}
+
+.clickable-text {
+  color: var(--clickable-text-color);
+  font-size: 12px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.border-red {
+  border: 2px solid red;
+}
+
+.margin-right-s {
+  margin-right: 5px;
+}
+
+.margin-left-s {
+  margin-left: 5px;
+}
+
+.margin-top-s {
+  margin-top: 5px;
+}
+
+.margin-bottom-s {
+  margin-bottom: 5px;
+}
+
+.margin-right {
+  margin-right: 10px;
+}
+
+.margin-left {
+  margin-left: 10px;
+}
+
+.margin-top {
+  margin-top: 10px;
+}
+
+.margin-bottom {
+  margin-bottom: 10px;
+}
+
+.margin-right-l {
+  margin-right: 15px;
+}
+
+.margin-left-l {
+  margin-left: 15px;
+}
+
+.margin-top-l {
+  margin-top: 15px;
+}
+
+.margin-bottom-l {
+  margin-bottom: 15px;
+}
+
+.margin-right-xl {
+  margin-right: 25px;
+}
+
+.margin-left-xl {
+  margin-left: 25px;
+}
+
+.margin-top-xl {
+  margin-top: 25px;
+}
+
+.margin-bottom-xl {
+  margin-bottom: 25px;
+}
+
+.padding-right {
+  padding-right: 10px;
+}
+
+.padding-left {
+  padding-left: 10px;
+}
+
+.padding-top {
+  padding-top: 10px;
+}
+
+.padding-bottom {
+  padding-bottom: 10px;
+}
+
+/*scrollbar*/
+
+*::-webkit-scrollbar {
+  width: 18px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #282932; /* color of the tracking area */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #404256; /* color of the scroll thumb */
+  border-radius: 1px; /* roundness of the scroll thumb */
+  /* border: 1px solid #000066;  */ /* creates padding around scroll thumb */
+}
+
+/*mat-checkbox*/
+.mat-checkbox-frame {
+  border-color: #4e4a4b !important;
+}
+
+/*mat-dialog*/
+mat-dialog-container {
+  background: var(--background-color) !important;
+}
+
+.custom-dialog-container .mat-dialog-container {
+  padding: 0;
+  max-width: 100vw;
+  border-radius: 10px;
+}
+
+mat-dialog-content{
+  padding: 0 !important;
+}
+
+/*mat-input*/
+input,
+textarea {
+  color: var(--text-color);
+}
+mat-label {
+  color: var(--text-color);
+}
+
+/*mat-button*/
+.mat-button-disabled {
+  color: rgb(104, 104, 104) !important;
+}
+
+/*mat-form-field*/
+mat-form-field,
+input,
+textarea {
+  caret-color: white !important;
+}
+
+.disabled-input-color {
+  color: rgb(104, 104, 104);
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline {
+  color: var(--dark-grey-3) !important;
+}
+
+.mat-select-value {
+  color: var(--text-color) !important;
+}
+
+.mat-input-element::placeholder {
+  color: rgb(100, 100, 100) !important;
+}
+
+.mat-input-element::placeholder {
+  color: rgb(100, 100, 100) !important;
+}
+
+/*mat-panel*/
+.mat-expansion-panel-body {
+  background-color: var(--background-color-3) !important;
+  color: var(--text-color);
+}
+
+mat-expansion-panel {
+  background-color: #0d47a1;
+  font-weight: 500;
+  color: white;
+  margin-bottom: 20px;
+}
+
+/*mat-progress*/
+
+.mat-progress-bar-fill::after {
+  background-color: #8120f0 !important;
+}
+
+.mat-progress-bar-buffer {
+  background: #e4e8eb !important;
+}
+
+.snackbar-error {
+  background-color: red !important;
+}
+
+a {
+  text-decoration: underline;
+  cursor: pointer;
+}

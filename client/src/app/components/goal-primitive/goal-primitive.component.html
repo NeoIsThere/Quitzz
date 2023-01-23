@@ -1,0 +1,63 @@
+<div *ngIf="isEditMode" class="edit-container">
+  <p class="explanatory-text">{{editMessage}}</p>
+  <div>
+    <form [formGroup]="goalForm" (ngSubmit)="onSubmitEdit()">
+      <mat-form-field appearance="outline" style="margin-bottom: -1.25em">
+        <mat-label>Goal (days)</mat-label>
+        <input
+          #goalEditor
+          type="number"
+          matInput
+          placeholder="Number of days"
+          formControlName="goal"
+        />
+        <mat-error *ngIf="goalForm.controls.goal.hasError('min')"
+          >Your goal must be greater than 0.
+        </mat-error>
+        <mat-error *ngIf="goalForm.controls.goal.hasError('max')"
+          >Your goal must be lower than 1000.
+        </mat-error>
+
+        <mat-icon matPrefix class="flag-icon">flag</mat-icon>
+      </mat-form-field>
+    </form>
+  </div>
+
+  <div class="button-container">
+    <button
+      (click)="onSubmitEdit()"
+      [disabled]="!goalForm.valid"
+      mat-raised-button
+      mat-button
+      class="done-button"
+    >
+      <mat-icon>done</mat-icon>
+    </button>
+    <button
+      type="button"
+      (click)="onCancelEdit()"
+      mat-raised-button
+      mat-button
+      color="warn"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+</div>
+
+<div *ngIf="!isEditMode" class="data-container">
+  <app-circle-progress
+    [value]="presentableProgress"
+    [sizePx]="sizePx"
+    [progressRadiusPx]="10"
+    [fontSizePx]="fontSizePx"
+    [labelFontSizePx]="10"
+    [completionRatio]="completionRatio"
+    backgroundColor="#2f3146"
+    label="DAYS"
+    [supFontSizePx]="16"
+  ></app-circle-progress>
+
+  <div class="message">{{ message }}</div>
+</div>
+

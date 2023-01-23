@@ -1,0 +1,171 @@
+<h2 mat-dialog-title class="title">Submit an image</h2>
+
+<form [formGroup]="imageForm" (ngSubmit)="onSubmitImage()" class="imageForm">
+  <div class="article-form-container">
+    <div class="upload-buttons-container">
+      <div>
+        <button
+          type="button"
+          class="file-button"
+          color="primary"
+          mat-raised-button
+          (click)="imageInput.click()"
+        >
+          <mat-icon>image</mat-icon>
+          <input
+            #imageInput
+            name="image"
+            type="file"
+            accept="image/png, image/jpeg"
+            style="display: none"
+            formControlName="image"
+          />
+        </button>
+        <span *ngIf="imageFile">
+          {{ imageFile }}
+        </span>
+      </div>
+    </div>
+
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      mat-button
+      [disabled]="!imageForm.valid"
+    >
+      Upload
+    </button>
+  </div>
+</form>
+
+<h2 mat-dialog-title class="title">Submit an article</h2>
+
+<form [formGroup]="articleForm" (ngSubmit)="onSubmitArticle()">
+  <div class="article-form-container">
+    <div class="upload-buttons-container">
+      <div>
+        <button
+          type="button"
+          class="file-button"
+          color="primary"
+          mat-raised-button
+          (click)="articleFileInput.click()"
+        >
+          <mat-icon>library_add</mat-icon>
+          <input
+            #articleFileInput
+            name="article"
+            type="file"
+            accept=".html"
+            style="display: none"
+            formControlName="article"
+          />
+        </button>
+        <span *ngIf="articleFile">
+          {{ articleFile }}
+        </span>
+      </div>
+      <div>
+        <button
+          type="button"
+          class="file-button"
+          color="primary"
+          mat-raised-button
+          (click)="headerImageInput.click()"
+        >
+          <mat-icon>image</mat-icon>
+          <input
+            #headerImageInput
+            name="image"
+            type="file"
+            accept="image/png, image/jpeg"
+            style="display: none"
+            formControlName="image"
+          />
+        </button>
+        <span *ngIf="headerImageFile">
+          {{ headerImageFile }}
+        </span>
+      </div>
+    </div>
+
+    <mat-form-field appearance="outline">
+      <mat-label class="text-color">Name</mat-label>
+      <input type="text" matInput placeholder="Name" formControlName="name" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label class="text-color">Author</mat-label>
+      <input type="text" matInput formControlName="author" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label class="text-color">Summary</mat-label>
+      <input
+        type="text"
+        matInput
+        placeholder="Summary"
+        formControlName="summary"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label class="text-color">Tag</mat-label>
+      <select formControlName="tag" matNativeControl required>
+        <option value="Motivation">Motivation</option>
+        <option value="Advice">Advice</option>
+        <option value="Useful">Useful</option>
+        <option value="Informational">Informational</option>
+      </select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label class="text-color">Image author</mat-label>
+      <input
+        type="text"
+        matInput
+        placeholder="Image author"
+        formControlName="imageCreditAuthor"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label class="text-color">Image author link</mat-label>
+      <input
+        type="text"
+        matInput
+        placeholder="Link to the page of the image author"
+        formControlName="imageCreditLink"
+      />
+    </mat-form-field>
+
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      mat-button
+      [disabled]="!articleForm.valid"
+    >
+      Upload
+    </button>
+  </div>
+</form>
+
+<div class="manage-articles-container">
+  <h2 mat-dialog-title class="title">Manage articles</h2>
+
+  <div cdkDropList (cdkDropListDropped)="dropMetadata($event)">
+    <div class="metadata" *ngFor="let metadata of metadatas" cdkDrag>
+      <div class="metadata-name">
+        {{ metadata.name }}
+      </div>
+      <div class="delete-button-container">
+        <button
+          type="button"
+          (click)="deleteArticle(metadata.id, metadata.fileName)"
+          mat-icon-button
+          color="warn"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

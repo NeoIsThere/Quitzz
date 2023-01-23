@@ -1,0 +1,167 @@
+<div class="container">
+  <div class="title margin-top-xl margin-bottom-xl">🏆 World Ranking</div>
+
+  <div class="under-title-container">
+    <app-circle-progress
+      [value]="rankingPosition"
+      [sizePx]="sizePx"
+      [progressRadiusPx]="7"
+      [fontSizePx]="positionFontSizePx"
+      [isPosition]="true"
+      [completionRatio]="1"
+      label=""
+      [supFontSizePx]="16"
+    ></app-circle-progress>
+
+    <div class="count-container">
+      <div class="real-total">
+        <div>Total users: {{ nTotalUsers }}</div>
+
+        <div class="align-right">
+          <button class="arrow-button" mat-icon-button (click)="openExplanationDialog()">
+            <mat-icon fontSet="material-icons-outlined" class="help-icon"
+              >help_center</mat-icon
+            >
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="search-container align-left">
+    <div *ngIf="!isSearchFieldDisplayed" (click)="displaySearchField()">
+      <mat-icon class="margin-right-s clickable-text-search-icon"
+        >search</mat-icon
+      >
+      <span class="clickable-text"> Search user </span>
+    </div>
+
+    <form
+      *ngIf="isSearchFieldDisplayed"
+      [formGroup]="searchByUserForm"
+      (ngSubmit)="onSearchByUser()"
+    >
+      <div class="center-y">
+        <mat-form-field class="search-by-user-form-field margin-right">
+          <mat-label>Username</mat-label>
+          <input type="text" matInput placeholder="" formControlName="search" />
+          <mat-icon
+            matPrefix
+            class="margin-right"
+            style="vertical-align: bottom"
+            >search</mat-icon
+          >
+        </mat-form-field>
+        <button
+          class="search-by-user-button"
+          color="primary"
+          type="submit"
+          [disabled]="!searchByUserForm.valid"
+          mat-raised-button
+          mat-button
+        >
+          <div class="center-x-y">
+            <mat-icon>done</mat-icon>
+          </div>
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <div class="list">
+    <div class="active-this-week-title margin-bottom-xl">Active this week</div>
+
+    <div *ngFor="let user of users; let i = index">
+      <div
+        class="user-item"
+        [ngClass]="{ me: user.me }"
+        (click)="navigateTo('profile/' + user.username)"
+      >
+        <div>
+          <mat-icon fontSet="material-icons-outlined">person</mat-icon>
+        </div>
+        <div>{{ user.username }}</div>
+        <div>{{ user.count }}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="list-page-buttons">
+      <button
+        [disabled]="!isDecrementPageButtonVisible"
+        mat-button
+        (click)="onPageChange(false)"
+      >
+        <mat-icon class="chevron">chevron_left</mat-icon>
+        Previous
+      </button>
+      <button
+        [disabled]="!isIncrementPageButtonVisible"
+        mat-button
+        (click)="onPageChange(true)"
+      >
+        Next
+        <mat-icon class="chevron">chevron_right</mat-icon>
+      </button>
+    </div>
+
+    <div class="stats-container">
+      <div class="stat">
+        <div>Average</div>
+        <app-circle-progress
+          [value]="average"
+          [sizePx]="75"
+          [progressRadiusPx]="4"
+          [fontSizePx]="20"
+          [labelFontSizePx]="10"
+          [completionRatio]="1"
+          backgroundColor="#2f3146"
+          label="DAYS"
+          [supFontSizePx]="16"
+        ></app-circle-progress>
+      </div>
+      <div class="stat">
+        <div>Median</div>
+        <app-circle-progress
+          [value]="median"
+          [sizePx]="75"
+          [progressRadiusPx]="4"
+          [fontSizePx]="20"
+          [labelFontSizePx]="10"
+          [completionRatio]="1"
+          backgroundColor="#2f3146"
+          label="DAYS"
+          [supFontSizePx]="16"
+        ></app-circle-progress>
+      </div>
+    </div>
+  </div>
+</div>
+<!--
+<div
+  [ngClass]="{ 'me-username-color': user.me }"
+  class="user-item"
+  *ngFor="let user of users; let i = index"
+>
+  <div *ngIf="!user.me" class="icon-placeholder"></div>
+  <div *ngIf="user.me" class="icon">
+    <mat-icon class="me-indicator-icon">person</mat-icon>
+  </div>
+  <div
+    [ngClass]="{
+      'me-counter-color': user.me,
+      'not-me-counter-color': !user.me
+    }"
+    class="counter-item"
+  >
+    {{ user.count }}
+  </div>
+  <div class="bolt-icon-container">
+    <mat-icon class="bolt-icon">bolt</mat-icon>
+  </div>
+  <div class="username" (click)="navigateTo('profile/' + user.username)">
+    {{ user.username }}
+  </div>
+</div>
+-->

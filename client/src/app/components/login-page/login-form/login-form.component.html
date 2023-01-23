@@ -1,0 +1,324 @@
+<div class="container" *ngIf="isSignIn && !isPasswordRecovery">
+  <div class="header">
+    <div class="title">Sign In</div>
+    <button mat-icon-button (click)="closeDialog()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <div class="login-custom-error">
+    <p class="mat-error" *ngIf="customError">{{ customError }}</p>
+  </div>
+
+  <form [formGroup]="signInForm" (ngSubmit)="onSignIn()">
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Username</mat-label>
+
+        <input type="text" matInput formControlName="username" />
+
+        <mat-error *ngIf="signInForm.controls.username.hasError('required')"
+          >Please enter your username.
+        </mat-error>
+        <mat-icon matPrefix class="material-icons-outlined placeholder-icon"
+          >person
+        </mat-icon>
+      </mat-form-field>
+    </p>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Password</mat-label>
+      <input
+        [type]="isPasswordVisible ? 'text' : 'password'"
+        matInput
+        formControlName="password"
+      />
+      <mat-icon matSuffix (click)="togglePasswordVisibility()">
+        {{ isPasswordVisible ? "visibility_off" : "visibility" }}</mat-icon
+      >
+      <mat-error
+        *ngIf="signInForm.controls.password.hasError('invalid-credentials')"
+        >Invalid username or password.
+      </mat-error>
+      <mat-error
+        *ngIf="signInForm.controls.password.hasError('sign-in-penalty')"
+      >
+        Too many failed sign-in attempts. Please try again in 15 mins.
+      </mat-error>
+      <mat-error *ngIf="signInForm.controls.password.hasError('required')"
+        >Please enter your password.
+      </mat-error>
+      <mat-icon matPrefix class="material-icons-outlined placeholder-icon"
+        >lock
+      </mat-icon>
+    </mat-form-field>
+
+    <div class="clickable-text" (click)="switchToPasswordRecovery()">
+      Forgot your password?
+    </div>
+
+    <div class="button-container">
+      <button
+        class="sign-in-button"
+        mat-raised-button
+        color="primary"
+        type="submit"
+        mat-button
+        [disabled]="!signInForm.valid || signInForm.disabled"
+      >
+        Sign in
+      </button>
+    </div>
+  </form>
+
+  <div class="button-container">
+    <div class="suggestion-to-switch-to-sign-up">Don't have an account?</div>
+    <button
+      class="create-account-button"
+      mat-raised-button
+      color="primary"
+      (click)="switchToSignUp()"
+    >
+      Create an account
+    </button>
+  </div>
+</div>
+
+<div class="container" *ngIf="!isSignIn && !isPasswordRecovery">
+  <div class="header">
+    <div class="title">Sign Up</div>
+    <button mat-icon-button (click)="closeDialog()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <form [formGroup]="signUpForm" (ngSubmit)="onSignUp()">
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Username</mat-label>
+        <input
+          type="text"
+          matInput
+          appearance="outline"
+          formControlName="username"
+        />
+        <mat-error *ngIf="signUpForm.controls.username.hasError('required')"
+          >Please enter a username.
+        </mat-error>
+        <mat-error *ngIf="signUpForm.controls.username.hasError('minlength')"
+          >Username must be 3 to 20 character long.
+        </mat-error>
+        <mat-error *ngIf="signUpForm.controls.username.hasError('maxlength')"
+          >Username must be 3 to 20 character long.
+        </mat-error>
+        <mat-error *ngIf="signUpForm.controls.username.hasError('pattern')"
+          >Username can only contain letters, digits and underscores.</mat-error
+        >
+        <mat-icon matPrefix class="material-icons-outlined placeholder-icon"
+          >person
+        </mat-icon>
+      </mat-form-field>
+    </p>
+
+    <div
+      matTooltip="Your email will only be used to reset your password in case you lose it. Feel free to provide a disposable email if you prefer."
+      matTooltipPosition="above"
+      class="tooltip-container"
+    >
+      Why is my email required?
+    </div>
+
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input type="email" matInput formControlName="email" />
+        <mat-error *ngIf="signUpForm.controls.email.hasError('required')"
+          >Please enter an email.
+        </mat-error>
+        <mat-error *ngIf="signUpForm.controls.email.hasError('email')"
+          >Please enter a valid email.</mat-error
+        >
+        <mat-icon matPrefix class="material-icons-outlined placeholder-icon"
+          >email
+        </mat-icon>
+      </mat-form-field>
+    </p>
+
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input
+          [type]="isPasswordVisible ? 'text' : 'password'"
+          matInput
+          formControlName="password"
+        />
+        <mat-icon matSuffix (click)="togglePasswordVisibility()">
+          {{ isPasswordVisible ? "visibility_off" : "visibility" }}</mat-icon
+        >
+        <mat-error *ngIf="signUpForm.controls.password.hasError('required')"
+          >Please enter a password.
+        </mat-error>
+        <mat-error *ngIf="signUpForm.controls.password.hasError('minlength')"
+          >Password must be 8 to 20 character long.
+        </mat-error>
+        <mat-error *ngIf="signUpForm.controls.password.hasError('maxlength')"
+          >Password must be 8 to 20 character long.
+        </mat-error>
+        <mat-error *ngIf="signUpForm.controls.password.hasError('pattern')"
+          >Password must contain at least 1 digit and 1 letter.</mat-error
+        >
+        <mat-icon matPrefix class="material-icons-outlined placeholder-icon"
+          >lock
+        </mat-icon>
+      </mat-form-field>
+    </p>
+
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Confirm your password</mat-label>
+        <input
+          [type]="isPasswordVisible ? 'text' : 'password'"
+          matInput
+          formControlName="passwordConfirmation"
+        />
+        <mat-icon matPrefix class="material-icons-outlined placeholder-icon"
+          >lock
+        </mat-icon>
+        <mat-error *ngIf="signUpForm.controls.password.hasError('required')"
+          >Please confirm your password.
+        </mat-error>
+      </mat-form-field>
+    </p>
+
+    <p>
+      <span
+        class="clickable-text little-margin-bottom"
+        (click)="toggleCurrentStreaks()"
+        >Click here to add your current streaks</span
+      >
+    </p>
+
+    <div *ngIf="isCurrentStreakVisible">
+      <p class="include-today-text">
+        Make sure to include today in your current streak.
+      </p>
+
+      <p>
+        <mat-form-field appearance="outline">
+          <input
+            type="number"
+            matInput
+            placeholder="Current Streak (PornFree)"
+            formControlName="currentStreakNP"
+          />
+          <mat-error *ngIf="signUpForm.controls.currentStreakNP.hasError('min')"
+            >Your current streak cannot be negative.
+          </mat-error>
+          <mat-error
+            *ngIf="signUpForm.controls.currentStreakNP.hasError('max')"
+          >
+            Streak that is entered manually (without commit) is limited to 999.
+          </mat-error>
+          <mat-icon matPrefix class="material-icons-outlined placeholder-icon"
+            >bolt
+          </mat-icon>
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-form-field appearance="outline">
+          <input
+            type="number"
+            matInput
+            placeholder="Current Streak (PMO)"
+            formControlName="currentStreakNF"
+          />
+          <mat-error *ngIf="signUpForm.controls.currentStreakNF.hasError('min')"
+            >Your current streak cannot be negative.
+          </mat-error>
+          <mat-error *ngIf="signUpForm.controls.currentStreakNF.hasError('max')"
+            >Streak that is entered manually (without commit) is limited to 999.
+          </mat-error>
+          <mat-icon matPrefix class="material-icons-outlined placeholder-icon"
+            >bolt
+          </mat-icon>
+        </mat-form-field>
+      </p>
+    </div>
+
+    <div class="button-container">
+      <button
+        class="sign-up-button"
+        mat-raised-button
+        color="primary"
+        type="submit"
+        mat-button
+        [disabled]="signUpForm.disabled"
+      >
+        Sign up
+      </button>
+    </div>
+
+    <div class="login-custom-error center-x margin-bottom-s">
+      <p class="mat-error" *ngIf="customError">{{ customError }}</p>
+    </div>
+  </form>
+
+  <div *ngIf="!isSignIn" class="button-container">
+    <div class="suggestion-to-switch-to-sign-in">Already have an account?</div>
+    <span class="go-back-to-sign-in-text" (click)="switchToSignIn()">
+      Sign in instead
+    </span>
+  </div>
+</div>
+
+<div class="container" *ngIf="isPasswordRecovery">
+  <div class="title">Password Recovery</div>
+  <p>A password reset link will be sent to your email.</p>
+  <p>It might take up to 10 minutes. Make sure to check your spam.</p>
+
+  <div class="password-custom-error">
+    <p class="mat-error" *ngIf="customError">{{ customError }}</p>
+  </div>
+
+  <form [formGroup]="passwordRecoveryForm" (ngSubmit)="onResetPassword()">
+    <p>
+      <mat-form-field appearance="outline">
+        <input
+          type="text"
+          matInput
+          placeholder="Username"
+          appearance="outline"
+          formControlName="username"
+        />
+
+        <mat-label> Enter your username </mat-label>
+        <mat-icon matPrefix class="material-icons-outlined placeholder-icon"
+          >person
+        </mat-icon>
+
+        <mat-error
+          *ngIf="passwordRecoveryForm.controls.username.hasError('required')"
+          >Please enter a username.
+        </mat-error>
+      </mat-form-field>
+      <span class="clickable-text" (click)="switchToSignIn()"
+        >Go back to Sign In</span
+      >
+    </p>
+
+    <div class="button-container">
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        mat-button
+        [disabled]="
+          !passwordRecoveryForm.valid || passwordRecoveryForm.disabled
+        "
+      >
+        Send email
+      </button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,16 @@
+.container {
+  margin-right: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 12px;
+}
+
+.container:hover {
+  color: #cfcfcf;
+}
+
+.me-icon {
+  display: inline;
+  margin-bottom: 2px;
+}

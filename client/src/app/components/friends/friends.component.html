@@ -1,0 +1,11 @@
+<button type="button" mat-icon-button (click)="openFriendsDialog()">
+  <mat-icon
+    [matBadgeHidden]="nFriendRequests <= 0"
+    [matBadge]="nFriendRequests"
+    matBadgeOverlap="true"
+    matBadgePosition="before"
+    matBadgeColor="accent"
+    matBadgeSize="small"
+    >group</mat-icon
+  >
+</button>

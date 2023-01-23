@@ -1,0 +1,267 @@
+.desktop {
+  display: none;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  display: block;
+}
+
+.new-indicator {
+  font-size: 10px;
+  padding-left: 2px;
+  padding-bottom: 8px;
+  color: #dc5eef;
+  display: none;
+}
+
+.middle-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 120vh;
+  margin-top: 15px;
+}
+
+.announcement-container {
+  background-color: #4f2b67;
+  color: #b4b4b4;
+  margin-bottom: 25px;
+}
+
+.header-side {
+  display: none;
+}
+
+.logo {
+  object-fit: contain;
+  height: 25px;
+}
+
+.counter {
+  display: none;
+}
+
+.ranking-counter {
+  margin-top: 40px;
+}
+
+.nav-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.static-motivation-message {
+  font-size: 20px;
+  width: 200px;
+  padding: 10px;
+  background-color: var(--background-color-3);
+}
+
+.mobile-container-static-motivation-message {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.mobile-logo-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+}
+
+.mobile-nav-bottom-border {
+  background-color: var(--background-color);
+  flex-grow: 1;
+  border-top: 2px solid #b9b9b9;
+}
+
+.mobile-logo-inner-container {
+  background-color: var(--primary);
+  width: 100px;
+  height: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding-left: 5px;
+  border-radius: 0 0 0 100px;
+  border-left: 2px solid #b9b9b9;
+  border-bottom: 2px solid #b9b9b9;
+}
+
+.random-motivation-container {
+  margin: 30px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.app-counter-container {
+  margin-bottom: 25px;
+}
+
+footer {
+  background-color: var(--primary);
+  padding: 6px 0;
+}
+
+.footer-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: 100;
+  font-size: 12px;
+}
+
+.footer-inner-container {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 3px;
+}
+
+.footer-inner-container > * {
+  margin-right: 10px;
+}
+
+a {
+  color: white;
+}
+
+.padding {
+  padding: 0 5% 0 5%;
+}
+
+.router-container {
+  flex-grow: 1;
+}
+
+.bottom-container {
+  flex-grow: 1;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.bottom-motivation {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  color: var(--title-color);
+  font-size: 14px;
+}
+
+.link-to-home {
+  pointer-events: none;
+}
+
+.mobile-toggle-game-button {
+  margin: 25px 0;
+}
+
+.mobile-help-button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.chat-icon-container {
+  display: flex;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  bottom: 2px;
+  right: 20px;
+  height: 65px;
+  width: 65px;
+  border: 2px solid rgb(85, 155, 196);
+  border-radius: 50%;
+}
+
+.chat-icon {
+  color: rgb(85, 155, 196);
+  transform: scale(1.5);
+  cursor: pointer;
+}
+.chat-icon:hover {
+  color: rgb(170, 214, 240);
+}
+
+/*
+.chatbox-container {
+  display: block;
+  position: fixed;
+  bottom: 0px;
+  right: 0px;
+  width: 300px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid red;
+}*/
+
+@media screen and (min-width: 800px) {
+  .mobile {
+    display: none;
+  }
+
+  .desktop {
+    display: block;
+  }
+
+  header {
+    display: grid;
+    grid-template-columns: 12% 76% 12%;
+  }
+
+  .header-side {
+    background-color: var(--primary);
+    height: 48px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-left: 5px;
+  }
+
+  .mobile-logo-container {
+    display: none;
+  }
+
+  .link-to-home {
+    pointer-events: auto;
+  }
+
+  .padding {
+    padding: 0 10% 0 10%;
+  }
+
+  .random-motivation-container {
+    margin: 30px 0;
+  }
+
+  .logo {
+    height: 48px;
+  }
+  .mobile-help-button-container {
+    display: none;
+  }
+
+  .chat-icon-container {
+    right: 30px;
+    height: 80px;
+    width: 80px;
+  }
+
+  .chat-icon {
+    transform: scale(1.75);
+  }
+}

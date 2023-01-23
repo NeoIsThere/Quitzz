@@ -1,0 +1,82 @@
+.container{
+    box-sizing: border-box;
+    height: 215px;
+  }
+  
+  .inner-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  
+  .data-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .explanatory-text{
+    font-size: 13px;
+  }
+  
+  .message {
+    font-size: 13px;
+  }
+  
+  .edit-button {
+    font-size: 12px;
+    background-color: var(--light-background-color);
+    color: var(--text-color);
+  }
+  
+  .edit-button-inner {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .edit-text {
+    margin-right: 5px;
+  }
+  
+  .edit-icon {
+    font-size: 12px;
+    width: 12px;
+    height: 12px;
+  }
+  
+  .title {
+    font-size: 25px;
+    margin-bottom: 10px;
+  }
+  
+  .middle-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .edit-container{
+    display: flex;
+    flex-direction: column;
+  }
+  
+  
+  
+  mat-form-field {
+    width: 150px;
+    margin-bottom: 30px;
+  }
+  
+  mat-error{
+    margin-top: 50px;
+  }
+  
+  .button-container {
+    display: flex;
+    flex-direction: row;
+    column-gap: 10px;
+  }
+  
+  

@@ -1,0 +1,15 @@
+* {
+  font-weight: 400;
+}
+
+.container {
+  margin-bottom: 60px;
+}
+
+.bold {
+  font-weight: 600;
+}
+
+.less-bold {
+  font-weight: 500;
+}

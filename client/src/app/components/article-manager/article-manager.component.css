@@ -1,0 +1,72 @@
+.title {
+  color: var(--title-color);
+}
+
+.article-form-container {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+}
+
+.file-button {
+  margin-bottom: 10px;
+  margin-right: 10px;
+}
+
+.upload-buttons-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.manage-articles-container {
+  margin-top: 25px;
+  width: 50%;
+  max-height: 500px;
+  padding: 5px;
+  overflow-y: scroll;
+}
+
+.metadata {
+  border-bottom: 2px solid rgb(174, 174, 174);
+  margin-bottom: 5px;
+  padding-left: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: move; 
+}
+
+.delete-button-container {
+  width: 50px;
+}
+
+.metadata-name {
+  flex-grow: 1;
+}
+
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: 4px;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+    0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.cdk-drop-list-dragging {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.imageForm {
+  margin-bottom: 50px;
+}
+
+.text-color {
+  color: var(--text-color);
+}

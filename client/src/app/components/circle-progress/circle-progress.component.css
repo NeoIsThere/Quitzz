@@ -1,0 +1,32 @@
+.container {
+  display: inline-block;
+}
+
+.outer-circle {
+  border-radius: 50%;
+  background: conic-gradient(#6c31ff 365deg, rgba(0, 0, 0, 0) 0);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.inner-circle {
+  border-radius: 50%;
+  background-color: var(--background-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+}
+
+.text-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+}
+

@@ -1,0 +1,28 @@
+<p class="title">Feedback</p>
+
+<form [formGroup]="form" (ngSubmit)="onSubmitFeedback()">
+  <mat-form-field class="form-field margin-bottom" appearance="outline">
+    <textarea
+      #mottoEditor
+      type="text"
+      placeholder="Tell us your thoughts..."
+      matInput
+      formControlName="feedback"
+    ></textarea>
+    <mat-error *ngIf="form.controls.feedback.hasError('required')"
+      >Your feedback cannot be empty !
+    </mat-error>
+    <mat-error *ngIf="form.controls.feedback.hasError('maxlength')"
+      >Your feeback is too long.</mat-error
+    >
+    <mat-icon matPrefix class="margin-right">rate_review</mat-icon>
+  </mat-form-field>
+  <button
+    type="submit"
+    class="feedback-button"
+    [disabled]="!form.valid"
+    mat-raised-button
+  >
+    <span>Send</span>
+  </button>
+</form>

@@ -1,0 +1,140 @@
+<div class="main">
+  <header>
+    <div class="header-side">
+      <a class="link-to-home" (click)="navigateTo('/p-ranking')">
+        <img class="logo" [src]="logoSrc" />
+      </a>
+    </div>
+
+    <div class="nav-container">
+      <nav
+        mat-tab-nav-bar
+        animationDuration="0ms"
+        mat-align-tabs="center"
+        color="accent"
+        backgroundColor="primary"
+      >
+        <a
+          mat-tab-link
+          routerLink="/p-ranking"
+          [active]="isActive('/p-ranking')"
+        >
+          PornFree
+        </a>
+        <a mat-tab-link routerLink="/pmo-ranking" [active]="isActive('/pmo-ranking')">
+          PMO
+        </a>
+        <a mat-tab-link routerLink="/articles" [active]="isActive('/articles')">
+          Articles <sup class="new-indicator"> NEW</sup>
+        </a>
+        <a mat-tab-link routerLink="/faq" [active]="isActive('/faq')"> FAQ </a>
+        <!--
+        <a
+          mat-tab-link
+          routerLink="/resources"
+          [active]="isActive('/resources')"
+        >
+          Resources
+        </a>-->
+        <a mat-tab-link routerLink="/account" [active]="isActive('/account')">
+          <div class="account-tab-username-icon-container">
+            <app-username-displayer></app-username-displayer>
+          </div>
+        </a>
+      </nav>
+      <div class="mobile-logo-container">
+        <div class="mobile-nav-bottom-border"></div>
+        <div class="mobile-logo-inner-container">
+          <img class="logo" [src]="logoSrc"  />
+        </div>
+      </div>
+    </div>
+
+    <div class="header-side">
+      <button
+        *ngIf="!isEmergencyPage"
+        type="button"
+        mat-raised-button
+        mat-button
+        color="warn"
+        (click)="navigateTo('/emergency')"
+      >
+        Need help
+      </button>
+    </div>
+  </header>
+  <div style="display: none" class="padding announcement-container">
+    ⚡ Join our new Discord server!
+  </div>
+
+  <div class="middle-container">
+    <div class="padding random-motivation-container">
+      <app-random-motivation></app-random-motivation>
+      <div *ngIf="isRankingPage" class="static-motivation-message desktop">
+        {{ message2 }}
+      </div>
+    </div>
+
+    <div class="padding middle-inner-container">
+      <div class="router-container">
+        <router-outlet></router-outlet>
+        <div class="mobile-container-static-motivation-message">
+          <div *ngIf="isRankingPage" class="static-motivation-message mobile">
+            {{ message2 }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bottom-container">
+      <div></div>
+      <div>
+        <div class="mobile-help-button-container">
+          <button
+            *ngIf="!isEmergencyPage"
+            type="button"
+            mat-raised-button
+            mat-button
+            color="warn"
+            (click)="navigateTo('/emergency')"
+          >
+            Need help
+          </button>
+        </div>
+
+        <div class="bottom-motivation">
+          <div style="width: 100px; margin-left: 10px">
+            <app-donate-button style="display: none"></app-donate-button>
+          </div>
+          <div><p>You got this ❤</p></div>
+          <div style="width: 100px; margin-right: 10px">
+            <!--THIS EMPTY DIV IS USEFUL  DIV (BC OF CSS SPACE-BETWEEN)-->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-inner-container">
+        <a class="privacy-policy-link" (click)="navigateTo('/privacy')">
+          Privacy policy</a
+        >
+
+        <a href="mailto:quitzzapp@yahoo.com"> Contact</a>
+
+      </div>
+      <div>© 2023 Quitzz</div>
+    </div>
+  </footer>
+
+  <div
+    style="display: none"
+    *ngIf="!isActive('/chat')"
+    class="chat-icon-container"
+    (click)="navigateTo('/chat')"
+  >
+    <mat-icon class="chat-icon">chat</mat-icon>
+  </div>
+</div>

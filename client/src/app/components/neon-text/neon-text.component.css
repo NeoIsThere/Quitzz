@@ -1,0 +1,21 @@
+@import url(https://fonts.googleapis.com/css?family=Exo+2:200i);
+
+
+div {
+  /*font-weight: 200;*/
+  display: inline;
+  font-style: italic;
+  color: #fff;
+  padding: 12px 18px 16.5px;
+  border: 0.4rem solid #fff;
+  border-radius: 2rem;
+  box-shadow:
+  0 0 .5rem #fff,
+  inset 0 0 .5rem #fff,
+  0 0 2rem var(--neon-border-color),
+  inset 0 0 2rem var(--neon-border-color),
+  0 0 4rem var(--neon-border-color),
+  inset 0 0 4rem var(--neon-border-color);         
+}
+
+

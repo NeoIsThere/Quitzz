@@ -1,0 +1,51 @@
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+}
+
+.accepted-files {
+  color: var(--clickable-text-color);
+  font-size: 11px;
+  margin-top: 5px;
+}
+
+.submit-your-own-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container {
+  padding: 20px 0px;
+}
+
+.article {
+  box-shadow: 0px 5px 15px 5px rgba(0, 0, 0, 0.18);
+  -moz-box-shadow: 0px 5px 15px 5px rgba(0, 0, 0, 0.18);
+  -webkit-box-shadow: 0px 5px 15px 5px rgba(0, 0, 0, 0.18);
+  margin: 0 0 50px 0;
+  border-radius: 8px;
+  background-color: var(--background-color-4);
+}
+
+.list-page-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 10px;
+  color: var(--arrow-back-color);
+}
+
+.chevron {
+  display: inline;
+  font-size: 50px;
+}
+
+
+@media screen and (min-width: 1200px) {
+  .container {
+    padding: 20px 120px;
+  }
+}

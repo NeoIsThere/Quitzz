@@ -1,0 +1,54 @@
+<div class="container">
+  <canvas #canvas class="canvas" width="350" height="440"></canvas>
+
+  <div class="controller">
+    <div class="arrows-container">
+      <div class="lateral-arrow-container">
+        <mat-icon class="icon" (click)="onKeyPress('left')"
+          >chevron_left</mat-icon
+        >
+      </div>
+      <div class="vertical-arrow-container">
+        
+      </div>
+      <div class="lateral-arrow-container">
+        <mat-icon class="icon" (click)="onKeyPress('right')"
+          >chevron_right</mat-icon
+        >
+      </div>
+    </div>
+
+    <div class="buttons-container">
+      <button
+        class="play-button"
+        mat-raised-button
+        id="playbutton"
+        color="primary"
+        (click)="playButtonClicked()"
+        [disabled]="disabled"
+      >
+        Play
+      </button>
+
+      <div class="inner-buttons-container">
+        <div class="rotate-container">
+          <mat-icon class="icon" (click)="onKeyPress('rotate')"
+            >rotate_right</mat-icon
+          >
+        </div>
+
+        <div class="water-container">
+          <mat-icon class="water-icon" (click)="onKeyPress('drop')"
+            >water_drop</mat-icon
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p class="attribution">
+  Based on the code of
+  <a href="https://github.com/dionyziz/canvas-tetris">dionyziz</a>
+</p>
+

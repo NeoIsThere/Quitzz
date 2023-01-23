@@ -1,0 +1,96 @@
+<div *ngIf="isReady">
+  <div *ngIf="isFriendRequestSendable" class="margin-bottom-xl">
+    <button
+      type="button"
+      (click)="addFriend()"
+      mat-raised-button
+      mat-button
+      color="primary"
+      [disabled]="isAddFriendButtonDisabled"
+    >
+      <mat-icon class="margin-right-s">person_add</mat-icon>Add friend
+    </button>
+  </div>
+
+  <div *ngIf="!isFriendRequestSendable" class="margin-bottom-xl">
+    <button
+      type="button"
+      (click)="addFriend()"
+      mat-raised-button
+      mat-button
+      color="primary"
+      disabled="true"
+    >
+      <mat-icon class="margin-right-s">person_add</mat-icon>
+      <span *ngIf="!isMyFriend">Request sent</span>
+      <span *ngIf="isMyFriend">Already friend</span>
+    </button>
+  </div>
+
+  <p class="disabled">
+    <mat-form-field appearance="outline" class="non-editable-color">
+      <mat-label class="text-color">Username</mat-label>
+      <mat-icon matPrefix class="margin-right">person</mat-icon>
+      <input
+        class="text-color"
+        matInput
+        placeholder="Username"
+        [value]="username"
+      />
+    </mat-form-field>
+  </p>
+
+  <p class="disabled">
+    <mat-form-field appearance="outline" class="non-editable-color">
+      <mat-label class="text-color">Joined since (MM-DD-YYYY)</mat-label>
+      <mat-icon matPrefix class="margin-right">calendar_today</mat-icon>
+      <input
+        class="text-color"
+        matInput
+        placeholder="Joined since"
+        [value]="joinedSince"
+      />
+    </mat-form-field>
+  </p>
+
+  <h2 mat-dialog-title class="title">Records</h2>
+  <p class="disabled">
+    <mat-form-field appearance="outline" class="non-editable-color">
+      <mat-label class="text-color">PornFree</mat-label>
+      <mat-icon matPrefix class="margin-right">person</mat-icon>
+      <input
+        class="text-color"
+        matInput
+        placeholder="PornFree"
+        [value]="NPrecord"
+      />
+    </mat-form-field>
+  </p>
+
+  <p class="disabled">
+    <mat-form-field appearance="outline" class="non-editable-color">
+      <mat-label class="text-color">PMO</mat-label>
+      <mat-icon matPrefix class="margin-right">person</mat-icon>
+      <input class="text-color" matInput placeholder="PMO" [value]="NFrecord" />
+    </mat-form-field>
+  </p>
+
+  <h2 mat-dialog-title class="title">Motto</h2>
+
+  <p>
+    <mat-form-field
+      appearance="outline"
+      class="non-editable-color text-area-container"
+    >
+      <mat-label class="text-color">Motto</mat-label>
+      <mat-icon matPrefix class="margin-right">self_improvement</mat-icon>
+      <textarea
+        class="text-color"
+        matInput
+        placeholder="Motto"
+        [value]="motto"
+        readonly
+      ></textarea>
+    </mat-form-field>
+  </p>
+</div>

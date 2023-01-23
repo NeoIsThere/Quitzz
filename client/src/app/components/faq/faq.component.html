@@ -1,0 +1,174 @@
+<div class="container">
+  <h2 mat-dialog-title class="title">Frequently Asked Questions</h2>
+
+  <div class="outline">
+    <mat-expansion-panel>
+      <mat-expansion-panel-header> What is Quitzz? </mat-expansion-panel-header>
+      <p class="text">
+        Quitzz is a project made by students whose goal is to help people break
+        their addiction and feel less alone in this journey. The idea is to
+        build a tool where we can all see each other's progress and realize the
+        extent of this addiction with concrete figures.
+      </p>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        What is PornFree?
+      </mat-expansion-panel-header>
+      <p class="text">
+        Being porn free simply means abstaining from watching pornography and
+        more generally from seeking sexual arousal from any medium (video,
+        image, audio...).
+      </p>
+
+      <p class="text">
+        Keep in mind that there is no restriction concerning real sex (i.e.,
+        with a human partner) as the goal of quitting porn is to be able to live
+        your best life, and we believe that a sexual life with high libido is an
+        important part of it.
+      </p>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        What is PMO?
+      </mat-expansion-panel-header>
+      <p class="text">
+        PMO stands for Pornography, Masturbation, Orgasm. Therefore, having a
+        PMO free lifestyle means having a PornFree lifestyle in addition to
+        abstaining from any form of masturbation.
+      </p>
+
+      <p class="text">
+        Keep in mind that there is no restriction concerning real sex (i.e.,
+        with a human partner) as the goal of quitting PMO is to be able to enjoy
+        a good life while being the best version of yourself, and we believe
+        that a sexual life with high libido is an important part of it.
+      </p>
+    </mat-expansion-panel>
+
+    
+  </div>
+
+  <div class="outline">
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        How is this project funded?
+      </mat-expansion-panel-header>
+      <p class="text">
+        We are relying on free credits and student offers that are available on
+        some hosting services. However, we're not going to have free credits
+        forever! We really don't want to put adds in there.. Any donations is
+        truly helpful.
+      </p>
+    </mat-expansion-panel>
+
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        How does it work?
+      </mat-expansion-panel-header>
+      <p class="text">
+        The objective is to maintain the longest possible streak. In the ranking
+        corresponding to your goal (
+        <a (click)="navigateTo('p-ranking')">pornfree</a> or
+        <a (click)="navigateTo('pmo-ranking')">PMO</a> ) you can press the
+        <i>Commit button</i> which increases your counter. You can only press
+        the button once per day (before midnight).
+      </p>
+    </mat-expansion-panel>
+
+   
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        What are the available ranks?
+      </mat-expansion-panel-header>
+      <p class="text">Here is the list of the available ranks:</p>
+      <ul class="text">
+        <li *ngFor="let rank of RANKS; first as isFirst">
+          {{ rank.label }} ({{ rank.min }} <span *ngIf="isFirst">day)</span
+          ><span *ngIf="!isFirst">days)</span>
+        </li>
+      </ul>
+    </mat-expansion-panel>
+  </div>
+  <div class="outline">
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        What if I forget to commit?
+      </mat-expansion-panel-header>
+      <p class="text">
+        Next time you commit, you will actually commit not only that day, but
+        all the days you have skipped automatically. The number on the
+        <i>Commit button</i> indicates the number of days that will be
+        committed.
+      </p>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        What if I relapse?
+      </mat-expansion-panel-header>
+      <p class="text">
+        You can press the <i>Relapse button</i> in order to reset your counter.
+      </p>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        What about cheating?
+      </mat-expansion-panel-header>
+      <p class="text">
+        We have no ways to know whether someone is cheating or not, and we do
+        not care. If having a high streak without deserving it makes some people
+        happy, then this project might not be of much help to them.
+      </p>
+      <p class="text">
+        Keep in mind that being honest with ourselves is key in order to
+        overcome this addiction. Therefore, those who cheat will likely be
+        trapped in an infinite loop of relapse.
+      </p>
+    </mat-expansion-panel>
+  </div>
+  <div class="outline">
+    <mat-expansion-panel>
+      <mat-expansion-panel-header> Who are you? </mat-expansion-panel-header>
+      <p class="text">
+        We are two students struggling with the same addiction problem. Things
+        started to improve dramatically once we discovered the power of not
+        being alone in this journey. Since we spent a good amount of time on
+        online communities, we were very aware of the extent of this problem.
+        Therefore, we decided to create a tool that we think could make people
+        feel less lonely in this battle. In addition to helping people, we want
+        to make people more aware of the dangers of this addiction. We find the
+        fact that our society has completely trivialized pornography very
+        disturbing.
+      </p>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        How can I contribute?
+      </mat-expansion-panel-header>
+      <p class="text">
+        If you want to suggest something, do not hesitate to
+        <a href="mailto:quitzzapp@yahoo.com"> contact us.</a>
+      </p>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        What time zone is used?
+      </mat-expansion-panel-header>
+      <p class="text">
+        We use the time zone information that is provided by your browser. It
+        might not be accurate. If you think that we have the wrong time zone, or
+        simply would like to change your time zone, you can do so in your
+        account <a (click)="navigateTo('/account')">page</a>.
+      </p>
+    </mat-expansion-panel>
+  </div>
+</div>

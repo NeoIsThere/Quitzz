@@ -1,0 +1,178 @@
+<div class="username-container center-y" *ngIf="username">
+  {{ username }}
+</div>
+
+<div class="mobile">
+  <div class="panel neon margin-bottom">
+    <div class="bg-img-container" [style]="firstContainerBackgroundImg"></div>
+    <app-circle-progress
+      [sizePx]="100"
+      [progressRadiusPx]="10"
+      [fontSizePx]="40"
+      [labelFontSizePx]="10"
+      [completionRatio]="1"
+      backgroundColor="#2f3146"
+      label="DAYS"
+      [supFontSizePx]="16"
+      [value]="currentStreak"
+    ></app-circle-progress>
+    <app-bar-progress
+      [widthPx]="125"
+      [fontSizeAbovePx]="13"
+      [fontSizeBelowPx]="11"
+      [labelAbove]="progressBarLabelAbove"
+      [labelBelow]="progressBarLabelBelow"
+      [completionRatio]="currentRankCompletion"
+    ></app-bar-progress>
+    <div class="social-button-container">
+      <app-inbox></app-inbox>
+      <app-friends></app-friends>
+    </div>
+  </div>
+
+  <div class="panel margin-bottom">
+    <app-accountability [category]="category"></app-accountability>
+  </div>
+  <div class="panel margin-bottom">
+    <div class="light-grey-border center-x commit-button-container">
+      <button
+        class="mobile-commit-button"
+        type="submit"
+        mat-raised-button
+        color="primary"
+        [disabled]="!isCommitButtonActive"
+        (click)="onCommit()"
+        [matTooltip]="commitButtonToolTip"
+        matTooltipShowDelay="600"
+        matTooltipPosition="above"
+      >
+        <mat-icon [svgIcon]="'lightning'" class="commit-icon"></mat-icon>
+        <span class="days-to-commit-msg">Commit {{ daysToCommitMessage }}</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="panel margin-bottom">
+    <div class="bg-img-container" [style]="containerBackgroundImg"></div>
+
+    <app-ranking [category]="category"> </app-ranking>
+  </div>
+
+  <div class="panel margin-bottom">
+    <div class="light-grey-border center-x commit-button-container">
+      <button
+        class="mobile-relapse-button"
+        type="submit"
+        mat-raised-button
+        [disabled]="!isRelapseButtonActive"
+        color="warn"
+        (click)="onRelapse()"
+      >
+        <span class="days-to-commit-msg">Relapse</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="panel margin-bottom">
+    <app-announcement></app-announcement>
+  </div>
+
+  <div class="panel margin-bottom">
+    <app-stats [category]="category"></app-stats>
+    <app-feedback></app-feedback>
+  </div>
+</div>
+
+<div class="desktop">
+  <div class="desktop-left-side">
+    <div class="desktop-upper-row">
+      <div class="panel neon">
+        <div
+          class="bg-img-container"
+          [style]="firstContainerBackgroundImg"
+        ></div>
+        <div class="desktop-progress-container center-y">
+          <div>
+            <app-circle-progress
+              [sizePx]="150"
+              [progressRadiusPx]="10"
+              [fontSizePx]="52"
+              [labelFontSizePx]="10"
+              [completionRatio]="1"
+              label="DAYS"
+              [supFontSizePx]="16"
+              [value]="currentStreak"
+            ></app-circle-progress>
+            <app-bar-progress
+              [widthPx]="150"
+              [fontSizeAbovePx]="18"
+              [fontSizeBelowPx]="12"
+              [labelAbove]="progressBarLabelAbove"
+              [labelBelow]="progressBarLabelBelow"
+              [completionRatio]="currentRankCompletion"
+            ></app-bar-progress>
+          </div>
+          <div class="desktop-social-button-container">
+            <app-inbox></app-inbox>
+
+            <app-friends></app-friends>
+          </div>
+        </div>
+        <div class="desktop-commit-button-container margin-top-xl">
+          <button
+            class="desktop-commit-button"
+            type="submit"
+            mat-raised-button
+            color="primary"
+            [disabled]="!isCommitButtonActive"
+            (click)="onCommit()"
+            [matTooltip]="commitButtonToolTip"
+            matTooltipShowDelay="600"
+            matTooltipPosition="above"
+          >
+            <mat-icon [svgIcon]="'lightning'" class="commit-icon"></mat-icon>
+            <span>Commit {{ daysToCommitMessage }}</span>
+          </button>
+
+          <button
+            class="desktop-relapse-button"
+            type="submit"
+            mat-raised-button
+            [disabled]="!isRelapseButtonActive"
+            color="warn"
+            (click)="onRelapse()"
+          >
+            <span>Relapse</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="panel accountability-panel">
+        <div class="bg-img-container" [style]="containerBackgroundImg"></div>
+        <app-accountability
+          [sizePx]="115"
+          [fontSizePx]="22"
+          [category]="category"
+        ></app-accountability>
+      </div>
+    </div>
+    <div>
+      <app-ranking
+        [category]="category"
+        [sizePx]="125"
+        [positionFontSizePx]="35"
+      ></app-ranking>
+    </div>
+  </div>
+
+  <div class="desktop-right-side">
+    <div class="panel lower-row-right-container">
+      <div class="bg-img-container" [style]="containerBackgroundImg"></div>
+
+      <app-announcement></app-announcement>
+
+      <app-stats [category]="category"></app-stats>
+      <app-feedback></app-feedback>
+    </div>
+  </div>
+</div>

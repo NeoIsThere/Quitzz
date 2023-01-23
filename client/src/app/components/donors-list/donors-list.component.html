@@ -1,0 +1,10 @@
+<div class="title">Supporters of the project</div>
+<div class="text-container light-grey-border">
+  <div
+    (click)="navigateTo('profile/' + donor.username)"
+    *ngFor="let donor of donors; let isLast = last"
+    class="donor_username"
+  >
+    {{ donor.username }}<span *ngIf="!isLast">,</span>
+  </div>
+</div>

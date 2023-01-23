@@ -1,0 +1,50 @@
+<div class="title margin-bottom-xl">📈 Stats</div>
+
+<div class="margin-bottom-xl average-container">
+  <div class="sub-title">Streak Average</div>
+  <!-- <span> {{ streakAvg }} days </span>-->
+  <div class="row-space-between">
+    <div>
+      <app-circle-progress
+        [sizePx]="75"
+        [progressRadiusPx]="5"
+        [fontSizePx]="30"
+        [labelFontSizePx]="10"
+        [completionRatio]="1"
+        label="DAYS"
+        [supFontSizePx]="16"
+        [value]="streakAvg"
+      ></app-circle-progress>
+    </div>
+
+    <button
+      class="arrow-button"
+      mat-icon-button
+      (click)="openExplanationDialog()"
+    >
+      <mat-icon fontSet="material-icons-outlined" class="help-icon"
+        >help_center</mat-icon
+      >
+    </button>
+  </div>
+</div>
+
+<div class="sub-title margin-bottom">Goals History</div>
+<div class="history-container light-grey-border">
+  <div class="completedGoalHeader margin-bottom-s">
+    <div>Objective</div>
+    <div>Begin date</div>
+  </div>
+  <div *ngIf="completedGoals && completedGoals.length > 0" class="history-content">
+    <div
+      *ngFor="let completedGoal of completedGoals"
+      class="completedGoal center-y"
+    >
+      <div>{{ completedGoal.objective }}</div>
+      <div class="date">{{ getDate(completedGoal) }}</div>
+    </div>
+  </div>
+  <div *ngIf="completedGoals && completedGoals.length == 0" class="history-content-none center-x-y">
+    Completed goals will appear here
+  </div>
+</div>

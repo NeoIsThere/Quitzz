@@ -1,0 +1,15 @@
+<div [ngClass]="{ 'my-message-row': isRightSide }" class="message-row">
+  <div class="message" [ngClass]="{ 'my-message': isRightSide }">
+    <div class="message-metadata-container" >
+      <div class="sender" (click)="navigateToProfile()">
+        {{ message.author }}
+      </div>
+      <div (click)="navigateToProfile()">
+        {{ getDate(message) }}
+      </div>
+    </div>
+    <div class="message-content">
+      {{ message.content }}
+    </div>
+  </div>
+</div>

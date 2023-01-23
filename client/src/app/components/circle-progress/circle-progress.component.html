@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="outer-circle" [ngStyle]="outerCircleStyle">
+    <div #innerCircle class="inner-circle" [ngStyle]="innerCircleStyle">
+      <div class="text-container" [ngStyle]="valueStyle">
+        <div>
+          {{ value
+          }}<sup [ngStyle]="{ 'font-size': supFontSizePx +'px' }" *ngIf="isPosition"
+            >th</sup
+          >
+        </div>
+        <div class="label" [ngStyle]="labelStyle">
+          {{ label }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

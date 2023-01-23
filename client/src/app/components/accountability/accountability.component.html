@@ -1,0 +1,200 @@
+<div class="root">
+  <div class="header center-y">
+    <div class="title">🤝 Accountability</div>
+    <div class="buttons-container">
+      <div>
+        <button
+          class="arrow-button"
+          mat-icon-button
+          (click)="openExplanationDialog()"
+        >
+          <mat-icon fontSet="material-icons-outlined" class="help-icon"
+            >help_center</mat-icon
+          >
+        </button>
+      </div>
+      <div>
+        <button
+          *ngIf="isModeDefault"
+          type="button"
+          class="button"
+          (click)="onCreate()"
+          mat-raised-button
+          mat-icon-button
+          color="primary"
+          [disabled]="areButtonsDisabled || maxGoalsReached"
+        >
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="default-container" *ngIf="isModeDefault">
+    <div class="default-container-main">
+      <app-goal-primitive
+        [sizePx]="sizePx"
+        [fontSizePx]="fontSizePx"
+        [currentProgress]="currentProgress"
+        [currentObjective]="currentObjective"
+      >
+      </app-goal-primitive>
+
+      <div class="margin-top">
+        <div class="margin-bottom-s leaderboard-title center-y">
+          <span class="margin-right-s"> Progress</span>
+          <mat-icon fontSet="material-icons-outlined">leaderboard</mat-icon>
+        </div>
+        <div class="leaderboard" *ngIf="currentGoal.progress.length > 0">
+          <div
+            *ngFor="let participant of currentGoal.progress"
+            class="participant margin-bottom"
+          >
+            <div class="leaderboard-username">{{ participant.username }}:</div>
+            <div class="leaderboard-count">{{ participant.count }}</div>
+          </div>
+        </div>
+        <div
+          *ngIf="currentGoal.progress.length == 0"
+          class="leaderboard center-y"
+        >
+          No participants
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="currentGoal.isMine" class="align-right">
+      <button
+        class="delete-button"
+        color="warn"
+        mat-raised-button
+        mat-icon-button
+        [disabled]="areButtonsDisabled"
+        (click)="onDeleteGoal()"
+      >
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+
+    <div class="center-x">
+      <div></div>
+      <div class="arrows-container">
+        <button
+          class="arrow-button"
+          [disabled]="!isDecrementPageButtonVisible"
+          mat-button
+          (click)="onPageChange(false)"
+        >
+          <mat-icon class="chevron">chevron_left</mat-icon>
+          Previous Goal
+        </button>
+        <button
+          class="arrow-button"
+          [disabled]="!isIncrementPageButtonVisible"
+          mat-button
+          (click)="onPageChange(true)"
+        >
+          Next Goal
+          <mat-icon class="chevron">chevron_right</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="isModeInvitation">
+    <div class="message-panel purple-top-border">
+      <h3>Invitation</h3>
+      <div class="font-weight-light">
+        <p>
+          You've been invited to participate to {{ currentGoal.creator }}'s
+          goal.
+        </p>
+        <p>Objective: {{ currentObjective }}</p>
+      </div>
+      <div class="align-right">
+        <div class="margin-right">
+          <button
+            type="button"
+            class="done-button"
+            (click)="acceptInvitation()"
+            mat-raised-button
+            mat-button
+            [disabled]="areButtonsDisabled"
+          >
+            Go!
+          </button>
+        </div>
+
+        <button
+          type="button"
+          (click)="rejectInvitation()"
+          mat-raised-button
+          mat-button
+          color="warn"
+          [disabled]="areButtonsDisabled"
+        >
+          Reject
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="isModeGoalReached">
+    <div class="message-panel green-top-border">
+      <h3>Goal Reached ✔️</h3>
+      <div class="font-weight-light">
+        {{ currentGoal.objective }} days accomplished!
+      </div>
+      <div class="align-right">
+        <button
+          type="button"
+          class="button"
+          (click)="confirm()"
+          mat-raised-button
+          mat-button
+          color="primary"
+          [disabled]="areButtonsDisabled"
+        >
+          OK
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="isModeRelapse">
+    <div class="message-panel red-top-border">
+      <h3>❌ Goal not reached</h3>
+      <div>
+        <p>{{ currentGoal.relapser }} has relapsed.</p>
+        <p class="small-font">
+          Your progress for goals involving {{ currentGoal.relapser }} has been
+          reset.
+        </p>
+      </div>
+      <div class="align-right">
+        <button
+          type="button"
+          class="button"
+          (click)="confirm()"
+          mat-raised-button
+          mat-button
+          color="primary"
+          [disabled]="areButtonsDisabled"
+        >
+          OK
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="isModeCreation" class="align-left">
+    <app-goal-primitive
+      [sizePx]="sizePx"
+      [fontSizePx]="fontSizePx"
+      [isEditMode]="true"
+      (editValue)="onEditValue($event)"
+      (cancelEdit)="onCancelEditValue()"
+    >
+    </app-goal-primitive>
+  </div>
+</div>

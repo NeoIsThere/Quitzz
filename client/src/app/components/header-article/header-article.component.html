@@ -1,0 +1,21 @@
+<div class="container">
+    <a (click)="navigateToArticle()">
+        <div class="full-height">
+            <div class="image-container">
+                <img [src]=metadata.linkToImage />
+            </div>
+            <div class="text-container">
+                <div class="full-height">
+                    <div class="tag" [ngStyle]="tagStyle">{{metadata.tag}}</div>
+                    <h2 class="hide-overflow">
+                        {{metadata.name}}
+                    </h2>
+                    <p class="summary hide-overflow">
+                        {{metadata.summary}}
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </a>
+</div>

@@ -1,0 +1,45 @@
+<button
+  class="go-back-button"
+  mat-raised-button
+  color="primary"
+  (click)="navigateTo('/articles')"
+>
+  <mat-icon>arrow_back</mat-icon>
+  Go Back
+</button>
+
+<div class="container">
+  <div>
+    <img [src]="linkToImage" />
+    <div class="authors-container">
+      <div (click)="navigateTo('profile/' + articleAuthor)">
+        Written by user: <a>{{ articleAuthor }}</a>
+      </div>
+      <div>
+        Photo by <a [href]="imageCreditLink">{{ imageCreditAuthor }}</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="article-name-container">
+    <div class="view-counter">
+      <mat-icon class="view-icon">visibility</mat-icon>
+      {{ nViews }}
+    </div>
+    <div>
+      <h1 class="article-title">{{ name }}</h1>
+    </div>
+  </div>
+
+  <div [innerHtml]="htmlContent"></div>
+
+  <button
+    class="copy-link-button"
+    mat-button
+    color="primary"
+    (click)="copyLinkToClipboard()"
+  >
+    <mat-icon> share </mat-icon>
+    Copy article link
+  </button>
+</div>

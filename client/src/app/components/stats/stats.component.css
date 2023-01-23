@@ -1,0 +1,54 @@
+.title {
+  font-size: 25px;
+}
+
+.sub-title {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.average-container {
+  display: flex;
+  flex-direction: column;
+  column-gap: 10px;
+}
+
+.streak-average {
+  font-size: 16px;
+}
+
+.completedGoalHeader {
+  display: grid;
+  grid-template-columns: 75px 90px 90px;
+  font-size: 15px;
+}
+
+.completedGoal {
+  display: grid;
+  grid-template-columns: 75px 150px;
+  font-size: 15px;
+}
+
+.history-container {
+  padding: 10px;
+}
+
+.history-content {
+  height: 100px;
+  overflow-y: scroll;
+  font-weight: 400;
+}
+
+.history-content-none {
+  height: 100px;
+  font-weight: 400;
+}
+
+.date {
+  font-size: 14px;
+}
+
+.border {
+  border: 2px solid grey;
+  border-radius: 10px;
+}

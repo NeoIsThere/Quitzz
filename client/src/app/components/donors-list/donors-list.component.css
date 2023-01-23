@@ -1,0 +1,23 @@
+.title {
+  font-size: 20px;
+  text-align: center;
+  margin: 10px 0;
+}
+
+.text-container {
+  margin: 10px;
+  padding: 10px;
+}
+
+.light-grey-border > div {
+  display: inline-block;
+}
+
+.donor_username {
+  padding: 1px 5px;
+  cursor: pointer;
+}
+
+.donor_username:hover {
+  text-decoration: underline;
+}

@@ -1,0 +1,99 @@
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  border: 4px solid rgb(137, 137, 137);
+  border-radius: 5px;
+  width: 185px;
+  align-items: center;
+  background-color: var(--background-color-3);
+}
+
+.canvas {
+  width: 175px;
+  height: 220px;
+}
+
+.arrows-container {
+  display: grid;
+  grid-template-columns: 30px 30px 30px;
+}
+
+.lateral-arrow-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.vertical-arrow-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 75px;
+}
+
+mat-icon:hover {
+ color: var(--title-color);
+}
+
+.icon {
+  transform: scale(1.2);
+}
+
+.water-icon {
+  transform: scale(1.1);
+}
+
+.rotate-right {
+  transform: scale(1.1);
+}
+
+.place-item {
+  display: inline;
+  width: 20px;
+  height: 10px;
+}
+
+.inner-buttons-container {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+}
+
+.controller {
+  display: grid;
+  grid-template-columns: 100px 75px;
+  width: 185px;
+  padding: 5px;
+  border: 4px solid rgb(137, 137, 137);
+  border-bottom: 0;
+  background-color: var(--background-color);
+}
+
+.buttons-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.rotate-container,
+.water-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  height: 100%;
+  margin-right: 20px;
+}
+
+.play-button {
+  width: 30px;
+  font-size: 12px;
+}
+
+.attribution{
+  font-size: 13px;
+  margin-left: 15px;
+}

@@ -1,0 +1,226 @@
+<div
+  [ngClass]="{'root': !isMessagesMode, 'root-conversation': (isMessagesMode)}"
+>
+  <div class="header margin-bottom-l center-y">
+    <div>
+      <button
+        *ngIf="isListMode"
+        [disabled]="isLoading"
+        mat-icon-button
+        (click)="refresh()"
+      >
+        <mat-icon>refresh</mat-icon>
+      </button>
+      <button
+        *ngIf="isMessagesMode"
+        [disabled]="isLoading"
+        mat-icon-button
+        (click)="switchToList()"
+      >
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+      <button
+        *ngIf="isMembersMode"
+        [disabled]="isLoading"
+        mat-icon-button
+        (click)="switchToMessages()"
+      >
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+    </div>
+    <div class="center-x-y title-container">
+      <mat-icon class="margin-right-s">mail</mat-icon>
+      <div *ngIf="!isMessagesMode">Inbox</div>
+      <div
+        class="title cursor-pointer"
+        (click)="switchToMembers()"
+        *ngIf="isMessagesMode"
+      >
+        {{getMembersStr(currentConversation)}}
+      </div>
+    </div>
+    <div>
+      <button
+        *ngIf="isMembersMode && !isNotifConversation()"
+        [disabled]="isLoading"
+        mat-icon-button
+        (click)="addPeople()"
+      >
+        <mat-icon>person_add</mat-icon>
+      </button>
+      <button mat-icon-button mat-dialog-close>
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="isLoading" class="center-x-y" style="height: 100%">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <div *ngIf="!isLoading" #conversation class="dialog-content">
+    <div *ngIf="isListMode">
+      <div
+        *ngFor="let conversation of conversations"
+        class="conversation margin-bottom center-y"
+        (click)="onConversationClick(conversation.id)"
+      >
+        <div class="group-icon-container margin-right">
+          <mat-icon *ngIf="isNotifConversation(conversation)" class="group-icon"
+            >notifications</mat-icon
+          >
+          <mat-icon
+            *ngIf="!isNotifConversation(conversation)"
+            class="group-icon"
+            >group</mat-icon
+          >
+        </div>
+        <div class="conversation-message">
+          <div class="message-metadata">
+            <div
+              class="message-header message margin-right"
+              [ngClass]="{unread: conversation.isUnread}"
+            >
+              {{getMembersStr(conversation)}}
+            </div>
+            <div class="message-time">
+              <div>{{getLatestMessageDate(conversation)}}</div>
+            </div>
+          </div>
+          <div
+            class="message-content"
+            [ngClass]="{unread: conversation.isUnread}"
+          >
+            {{getLatestMessage(conversation)}}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      *ngIf="isListMode && (conversations.length ==1)"
+      class="conversations-placeholder"
+    >
+      <span class="no-conversations-text">
+        No other conversations. Start a new one by messaging a friend.
+      </span>
+    </div>
+
+    <div *ngIf="isMessagesMode" style="height: 100%">
+      <div
+        [ngClass]="{'invisible': isInputDisabled || isMaxMessagesIndexReached }"
+        (click)="onLoadMoreMessages()"
+        class="center-x margin-top margin-bottom clickable-text"
+      >
+        Load more messages
+      </div>
+      <div
+        *ngIf="currentMessages.length==0"
+        style="height: 100%"
+        class="center-x-y"
+      >
+        Conversation empty...
+      </div>
+      <div *ngFor="let message of currentMessages; let firstItem = first;">
+        <div [ngClass]="{'margin-top': firstItem}">
+          <app-message
+            [message]="message"
+            [isRightSide]="!!message.isMe"
+          ></app-message>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="isMembersMode">
+      <div
+        *ngIf="!isNotifConversation()"
+        class="align-right margin-top margin-bottom"
+      >
+        <button
+          class="leave-button"
+          color="warn"
+          mat-raised-button
+          mat-icon-button
+          [disabled]="isLoading"
+          (click)="onLeaveConversation()"
+        >
+          <mat-icon>logout</mat-icon>
+        </button>
+      </div>
+      <div *ngIf="isNotifConversation()" class="margin-bottom-xl"></div>
+      <div class="members-list-title">Participants:</div>
+      <div class="list">
+        <div *ngFor="let user of currentMembers let i = index">
+          <div class="user-item" (click)="onMemberClick(user)">
+            <div>
+              <mat-icon>person_pin</mat-icon>
+            </div>
+            <div class="member-username">{{ user }}</div>
+            <div class="member-data-container center-y">
+              <!--
+              <div class="category">PornFree</div>
+              <div class="count">
+                <app-circle-progress
+                  [sizePx]="30"
+                  [progressRadiusPx]="4"
+                  [fontSizePx]="12"
+                  [labelFontSizePx]="8"
+                  [completionRatio]="1"
+                  backgroundColor="#2f3146"
+                  [supFontSizePx]="4"
+                  value="44"
+                ></app-circle-progress>
+              </div>
+              <div class="category">PMO</div>
+              <div class="count">
+                <app-circle-progress
+                  [sizePx]="30"
+                  [progressRadiusPx]="4"
+                  [fontSizePx]="12"
+                  [labelFontSizePx]="8"
+                  [completionRatio]="1"
+                  backgroundColor="#2f3146"
+                  [supFontSizePx]="4"
+                  value="22"
+                ></app-circle-progress>
+              </div>
+                -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="isMessagesMode" class="footer">
+    <div
+      class="message-input-container"
+      [ngClass]="{'invisible':isInputDisabled}"
+    >
+      <form [formGroup]="messageForm" (ngSubmit)="onSendMessage()">
+        <mat-form-field>
+          <mat-label>Type a message...</mat-label>
+          <textarea
+            type="text"
+            formControlName="message"
+            matInput
+            style="resize: none"
+          ></textarea>
+          <button
+            color="primary"
+            class="send-button"
+            mat-button
+            matSuffix
+            mat-raised-button
+            [disabled]="!messageForm.valid || isInputDisabled || isMessageEmpty"
+          >
+            <mat-icon>send</mat-icon>
+          </button>
+          <mat-error *ngIf="messageForm.controls.message.hasError('maxlength')">
+            Your message is too long.
+          </mat-error>
+        </mat-form-field>
+      </form>
+    </div>
+  </div>
+</div>

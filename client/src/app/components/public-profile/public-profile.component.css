@@ -1,0 +1,42 @@
+.title {
+  color: var(--title-color);
+}
+
+.disabled {
+  pointer-events: none;
+}
+
+.margin-right {
+  margin-right: 1em;
+}
+
+.non-editable-color {
+  color: rgb(94, 94, 94);
+}
+
+p,
+h2 {
+  margin: 0;
+}
+h2 {
+  margin-bottom: 10px;
+}
+
+.text-area-container,
+textarea {
+  height: 100px;
+}
+
+.text-color {
+  color: var(--text-color);
+}
+
+
+
+@media screen and (min-width: 600px) {
+  .text-area-container,
+  textarea {
+    width: 550px;
+    height: 100px;
+  }
+}

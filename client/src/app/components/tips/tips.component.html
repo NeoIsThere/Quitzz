@@ -1,0 +1,41 @@
+<div class="header">
+  <div class="submit-your-own-container">
+    <a href="mailto:quitzzapp@yahoo.com">
+      <button
+        type="submit"
+        mat-raised-button
+        color="primary"
+        matTooltipShowDelay="600"
+        matTooltipPosition="above"
+      >
+        Submit your own article
+      </button>
+    </a>
+    <div class="accepted-files">DOCX, PDF or HTML</div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="article" *ngFor="let metadata of articlesMetadata">
+    <app-header-article [metadata]="metadata"></app-header-article>
+  </div>
+
+  <div class="list-page-buttons">
+    <button
+      [disabled]="!isDecrementPageButtonVisible"
+      mat-button
+      (click)="onPageChange(false)"
+    >
+      <mat-icon class="chevron">chevron_left</mat-icon>
+      Previous
+    </button>
+    <button
+      [disabled]="!isIncrementPageButtonVisible"
+      mat-button
+      (click)="onPageChange(true)"
+    >
+      Next
+      <mat-icon class="chevron">chevron_right</mat-icon>
+    </button>
+  </div>
+</div>

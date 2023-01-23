@@ -1,0 +1,59 @@
+<div class="motivation-message">
+  <span class="message">{{ message }}</span>
+  <div class="from-user-container">
+    <div class="from-user-inner-container">
+      <mat-icon class="verified-icon">verified_user</mat-icon>
+      <span class="author"> from user {{ author }} </span>
+    </div>
+  </div>
+</div>
+
+<div class="submit-your-own">
+  <p class="clickable-text" (click)="toggleEdit()">
+    {{ clickableText }}
+    <sup class="help-icon">
+      <mat-icon
+        inline
+        matTooltip="We read all submissions. Please note: disrespectful messages will result in a ban of your account."
+      >
+        help_outline</mat-icon
+      >
+    </sup>
+  </p>
+</div>
+<div *ngIf="isEdit">
+  <div class="editor-container">
+    <form [formGroup]="motivationMessageForm" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="outline">
+        <input
+          type="text"
+          matInput
+          placeholder="Something motivating!"
+          formControlName="message"
+        />
+        <mat-error
+          *ngIf="motivationMessageForm.controls.message.hasError('required')"
+          >Please enter a message.
+        </mat-error>
+        <mat-error
+          *ngIf="motivationMessageForm.controls.message.hasError('maxlength')"
+        >
+          Your message is too long.
+        </mat-error>
+        <mat-icon matPrefix class="material-icons-outlined placeholder-icon"
+          >whatshot
+        </mat-icon>
+      </mat-form-field>
+      <button
+        type="submit"
+        [disabled]="!motivationMessageForm.valid"
+        mat-raised-button
+        mat-button
+        color="primary"
+        class="submit-button"
+      >
+        Submit
+      </button>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+.editor-container{
+}
+.text {
+    color: var(--clickable-text-color);
+    font-weight: 400;
+  }
+.form-field{
+    width: 100%;
+}
+.placeholder-icon {
+    color: var(--clickable-text-color);
+    margin-right: 0.5em;
+  }
+h2{
+    color: var(--title-color);
+}
+
+

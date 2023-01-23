@@ -1,0 +1,27 @@
+.title {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+form {
+  width: 100%;
+}
+
+.form-field {
+  width: 100%;
+}
+
+mat-form-field {
+  border: none !important;
+  outline: none !important;
+}
+
+textarea {
+  height: 100px;
+}
+
+.feedback-button {
+  width: 100px;
+  background-color: #523a78;
+  color: var(--text-color);
+}

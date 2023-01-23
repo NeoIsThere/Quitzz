@@ -1,0 +1,117 @@
+<!--
+
+<p>
+  Please note, this is a beta version. We would be happy to hear your opinion about the chat.
+</p>
+
+<div class="channel-selector">
+  <mat-button-toggle-group
+    #group="matButtonToggleGroup"
+    [(ngModel)]="currentChannel"
+  >
+    <mat-button-toggle class="channel white-text" value="C1">
+      <mat-icon>public</mat-icon>
+      Global 1
+    </mat-button-toggle>
+
+    <mat-button-toggle class="channel white-text" value="C2">
+      <mat-icon>public</mat-icon>
+      Global 2
+    </mat-button-toggle>
+
+    <mat-button-toggle class="channel white-text" value="C3">
+      <mat-icon>public</mat-icon>
+      Global 3
+    </mat-button-toggle>
+  </mat-button-toggle-group>
+</div>
+
+<div class="chatbox-header white-text">
+  <div>{{ presentableCurrentChannel }}</div>
+  <div class="header-right-part"><i> Beta version</i></div>
+</div>
+<div #chat class="main" (scroll)="onScroll()">
+  <div class="disconnected" *ngIf="!isSocketConnected()">
+    <mat-spinner></mat-spinner>
+    <button
+      class="reconnect-button"
+      type="button"
+      mat-button
+      color="primary"
+      (click)="connect()"
+    >
+      Click here to refresh
+    </button>
+  </div>
+  <div *ngIf="isSocketConnected()">
+    <div class="display-more-container">
+      <span (click)="loadMoreMessages()" class="clickable-text load-more-txt"
+        >Load more messages</span
+      >
+    </div>
+    <div *ngFor="let msg of messages">
+      <div
+        [ngClass]="{ 'my-message-row': msg.author == username }"
+        class="message-row"
+      >
+        <div class="message">
+          <div class="message-metadata-container">
+            <div *ngIf="isAdminConnected">
+              <mat-icon (click)="deleteMessage(msg)">delete_forever</mat-icon>
+            </div>
+            <div class="sender" (click)="navigateTo('profile/' + msg.author)">
+              {{ msg.author }}
+            </div>
+          </div>
+          <div class="message-content">
+            {{ msg.content }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="footer">
+  <div class="message-input-container">
+    <form [formGroup]="messageForm" (ngSubmit)="onSend()">
+      <mat-form-field>
+        <mat-label>Type a message...</mat-label>
+        <textarea type="text" formControlName="message" matInput></textarea>
+        <button
+          color="primary"
+          class="send-button"
+          mat-button
+          matSuffix
+          mat-raised-button
+          [disabled]="!messageForm.valid"
+        >
+          <mat-icon>send</mat-icon>
+        </button>
+        <mat-error *ngIf="messageForm.controls.message.hasError('maxlength')">
+          Your message is too long.
+        </mat-error>
+      </mat-form-field>
+    </form>
+  </div>
+</div>
+<mat-expansion-panel [expanded]="true">
+  <mat-expansion-panel-header> Chat rules </mat-expansion-panel-header>
+  <ul>
+    <li>
+      Do not share NSFW content. Any text, link, or other medium that contains
+      sexual suggestiveness is forbidden.
+    </li>
+    <li>
+      Do not encourage others to relapse or do things that go against this
+      project's philosophy.
+    </li>
+    <li>
+      Hate speech and discriminatory language are obviously not tolerated.
+    </li>
+
+    <li>Also do not spam words or use all-caps.</li>
+
+    <li>Be nice to others :)</li>
+  </ul>
+</mat-expansion-panel>
+-->

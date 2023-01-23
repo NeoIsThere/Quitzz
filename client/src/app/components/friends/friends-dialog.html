@@ -1,0 +1,169 @@
+<div [ngClass]="{'root': !isSelectorMode, 'root-selector': isSelectorMode}">
+  <div class="header margin-bottom-l center-y">
+    <div>
+      <button
+        (click)="switchToDefault()"
+        *ngIf="isRequestsMode"
+        mat-icon-button
+        [disabled]="areButtonsDisabled"
+      >
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+    </div>
+    <div class="center-y title-container">
+      <mat-icon class="margin-right-s">group</mat-icon><span>Friends</span>
+    </div>
+    <div>
+      <span *ngIf="isSelectorMode"
+        >{{nSelectedFriends}}/{{nMaxSelectableFriends}}</span
+      >
+      <button
+        *ngIf="isDefaultMode"
+        type="button"
+        class="requests-button"
+        (click)="switchToRequests()"
+        mat-stroked-button
+        [matBadgeHidden]="nFriendRequests <= 0"
+        [matBadge]="nFriendRequests"
+        matBadgeOverlap="true"
+        matBadgePosition="below"
+        matBadgeColor="accent"
+        matBadgeSize="medium"
+        [disabled]="areButtonsDisabled"
+      >
+        Requests
+      </button>
+      <button mat-icon-button mat-dialog-close>
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <div class="dialog-content">
+    <div *ngIf="isLoading" class="center-x-y" style="height: 100%">
+      <mat-spinner></mat-spinner>
+    </div>
+
+    <div
+      *ngIf="!isLoading && friends.length==0"
+      class="center-x-y"
+      style="height: 100%; text-align: center"
+    >
+      <span *ngIf="isRequestsMode">No incoming friend requests.</span>
+      <span *ngIf="isDefaultMode"
+        >You can add friends by clicking on their username in the
+        rankings.</span
+      >
+      <span *ngIf="isSelectorMode">No remaining friends to add.</span>
+    </div>
+    <div *ngIf="!isLoading && friends.length>0" class="friends-container">
+      <div *ngFor="let friend of friends" class="selector-container center-y" >
+        <div *ngIf="isSelectorMode">
+          <mat-checkbox
+            (change)="toggleFriend($event, friend)"
+            [disabled]="isSelectionLimitReached && !friend.isSelected"
+          ></mat-checkbox>
+        </div>
+        <div class="accept-ignore-container" *ngIf="isRequestsMode">
+          <button
+            (click)="onAccept(friend.username)"
+            mat-raised-button
+            mat-button
+            color="primary"
+            [disabled]="areButtonsDisabled"
+          >
+            Accept
+          </button>
+          <button
+            (click)="onIgnore(friend.username)"
+            mat-button
+            color="warn"
+            [disabled]="areButtonsDisabled"
+          >
+            Ignore
+          </button>
+        </div>
+        <div class="friend-container panel">
+          <div class="upper-container">
+            <div class="username-container center-y" (click)="navigateToProfile(friend.username)">
+              <mat-icon>person_pin</mat-icon
+              ><span class="username">{{friend.username}}</span>
+            </div>
+            <div *ngIf="isDefaultMode">
+              <button
+                (click)="onSendMessage(friend.username)"
+                mat-icon-button
+                [disabled]="areButtonsDisabled"
+              >
+                <mat-icon>mail</mat-icon>
+              </button>
+            </div>
+          </div>
+          <div class="data-container">
+            <div class="counts-container">
+              <div class="center-y">
+                <div class="category">PornFree</div>
+                <div class="count">
+                  <app-circle-progress
+                    [sizePx]="30"
+                    [progressRadiusPx]="4"
+                    [fontSizePx]="12"
+                    [labelFontSizePx]="8"
+                    [completionRatio]="1"
+                    backgroundColor="#2f3146"
+                    [supFontSizePx]="4"
+                    [value]="friend.NPcount+''"
+                  ></app-circle-progress>
+                </div>
+              </div>
+              <div class="center-y">
+                <div class="category">PMO</div>
+                <div class="count">
+                  <app-circle-progress
+                    [sizePx]="30"
+                    [progressRadiusPx]="4"
+                    [fontSizePx]="12"
+                    [labelFontSizePx]="8"
+                    [completionRatio]="1"
+                    backgroundColor="#2f3146"
+                    [supFontSizePx]="4"
+                    [value]="friend.NFcount+''"
+                  ></app-circle-progress>
+                </div>
+              </div>
+              <div>
+                <button
+                (click)="navigateToProfile(friend.username)"
+                  mat-icon-button
+                  [disabled]="areButtonsDisabled"
+                >
+                  <mat-icon class="info-icon"  fontSet="material-icons-outlined">info</mat-icon>
+                </button>
+              </div>
+            </div>
+            <div *ngIf="isDefaultMode">
+              <button
+                (click)="onRemove(friend.username)"
+                mat-icon-button
+                [disabled]="areButtonsDisabled"
+              >
+                <mat-icon class="remove-icon">person_remove</mat-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer" *ngIf="isSelectorMode" align="end">
+    <button
+      mat-button
+      (click)="onSelectionConfirm()"
+      [disabled]="areButtonsDisabled"
+    >
+      OK
+    </button>
+    <button mat-button mat-dialog-close>Cancel</button>
+  </div>
+</div>

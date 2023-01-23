@@ -1,0 +1,23 @@
+.announcement-title {
+  font-size: 20px;
+  text-align: center;
+}
+
+.text-container {
+  padding: 20px;
+  font-size: 14px;
+
+}
+
+.donate-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-top: 50px;
+  padding-bottom: 25px;
+  padding-right: 25px;
+}
+
+.donors-container {
+  margin-top: 25px;
+}

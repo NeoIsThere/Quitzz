@@ -1,0 +1,339 @@
+<div *ngIf="isReady">
+  <div class="logout-container">
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="navigateTo('/p-ranking')"
+    >
+      <mat-icon>arrow_back</mat-icon>
+      Go Back
+    </button>
+
+    <button mat-raised-button color="warn" (click)="onLogout()" [disabled]="areButtonsDisabled">
+      <mat-icon>logout</mat-icon>
+      Log Out
+    </button>
+  </div>
+
+  <h2 mat-dialog-title class="main-title title">My Account</h2>
+
+  <h2 mat-dialog-title class="title">Personal information</h2>
+
+  <p>
+    <mat-form-field appearance="outline" class="disabled-input-color">
+      <mat-label class="disabled-input-color">Username</mat-label>
+      <mat-icon matPrefix class="margin-right">person</mat-icon>
+      <input matInput [value]="username" readonly />
+    </mat-form-field>
+  </p>
+
+  <form [formGroup]="mottoForm" (ngSubmit)="onSaveMotto()">
+    <div class="email-container">
+      <div class="email-edit-buttons">
+        <button
+          type="button"
+          (click)="onEditMotto()"
+          *ngIf="!isEditMotto"
+          mat-raised-button
+          mat-button
+          color="primary"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+        <div class="edit-buttons-container">
+          <button
+            type="submit"
+            *ngIf="isEditMotto"
+            [disabled]="!mottoForm.valid || areButtonsDisabled"
+            mat-raised-button
+            mat-button
+            class="margin-right margin-bottom-mobile done-button"
+          >
+            <mat-icon>done</mat-icon>
+          </button>
+          <button
+            type="button"
+            (click)="onCancelEditMotto()"
+            *ngIf="isEditMotto"
+            mat-raised-button
+            mat-button
+            color="warn"
+          >
+            <mat-icon>close</mat-icon>
+          </button>
+        </div>
+      </div>
+      <mat-form-field
+        class="margin-right email-form-field"
+        appearance="outline"
+      >
+        <mat-label>Motto</mat-label>
+        <textarea
+          #mottoEditor
+          type="text"
+          placeholder="The truth"
+          matInput
+          formControlName="motto"
+          [readonly]="!isEditMotto"
+        ></textarea>
+        <mat-error *ngIf="mottoForm.controls.motto.hasError('required')"
+          >Please enter a motto.
+        </mat-error>
+        <mat-error *ngIf="mottoForm.controls.motto.hasError('maxlength')"
+          >Your motto is too long.</mat-error
+        >
+        <mat-icon matPrefix class="margin-right">self_improvement</mat-icon>
+      </mat-form-field>
+    </div>
+  </form>
+
+  <p class="email-privacy-notice">
+    Your email adress is private and not visible by others.
+  </p>
+
+  <form [formGroup]="emailForm" (ngSubmit)="onSaveEmail()">
+    <div class="email-container">
+      <div class="email-edit-buttons">
+        <button
+          type="button"
+          (click)="onEditEmail()"
+          *ngIf="!isEditEmail"
+          mat-raised-button
+          mat-button
+          color="primary"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+        <div class="edit-buttons-container">
+          <button
+            type="submit"
+            *ngIf="isEditEmail"
+            [disabled]="!emailForm.valid || areButtonsDisabled"
+            mat-raised-button
+            mat-button
+            class="margin-right margin-bottom-mobile done-button"
+          >
+            <mat-icon>done</mat-icon>
+          </button>
+          <button
+            type="button"
+            (click)="onCancelEditEmail()"
+            *ngIf="isEditEmail"
+            mat-raised-button
+            mat-button
+            color="warn"
+          >
+            <mat-icon>close</mat-icon>
+          </button>
+        </div>
+      </div>
+      <mat-form-field
+        class="margin-right email-form-field"
+        appearance="outline"
+        [ngStyle]="emailStyle"
+      >
+        <mat-label>Email</mat-label>
+        <input
+          #emailEditor
+          type="email"
+          matInput
+          placeholder="example@domain.com"
+          formControlName="email"
+        />
+        <mat-error *ngIf="emailForm.controls.email.hasError('required')"
+          >Please enter an email.
+        </mat-error>
+        <mat-error *ngIf="emailForm.controls.email.hasError('email')"
+          >Please enter a valid email.</mat-error
+        >
+        <mat-icon matPrefix class="margin-right">email</mat-icon>
+      </mat-form-field>
+    </div>
+  </form>
+
+  <p>
+    <mat-form-field appearance="outline" class="disabled-input-color">
+      <mat-label class="disabled-input-color"
+        >Joined since (YYYY-MM-DD)</mat-label
+      >
+      <mat-icon matPrefix class="margin-right">calendar_today</mat-icon>
+      <input matInput [value]="joinedSince" readonly />
+    </mat-form-field>
+  </p>
+
+  <h2 mat-dialog-title class="title">Edit streaks</h2>
+
+  <form
+    class="NPStreakForm"
+    [formGroup]="NPStreakForm"
+    (ngSubmit)="onSaveNPStreak()"
+  >
+    <div class="email-container">
+      <div class="email-edit-buttons">
+        <button
+          type="button"
+          (click)="onEditNPStreak()"
+          *ngIf="!isEditNPStreak"
+          mat-raised-button
+          mat-button
+          color="primary"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+        <div class="edit-buttons-container">
+          <button
+            type="submit"
+            *ngIf="isEditNPStreak"
+            [disabled]="!NPStreakForm.valid || areButtonsDisabled"
+            mat-raised-button
+            mat-button
+            class="margin-right margin-bottom-mobile done-button"
+          >
+            <mat-icon>done</mat-icon>
+          </button>
+          <button
+            type="button"
+            (click)="onCancelEditNPStreak()"
+            *ngIf="isEditNPStreak"
+            mat-raised-button
+            mat-button
+            color="warn"
+          >
+            <mat-icon>close</mat-icon>
+          </button>
+        </div>
+      </div>
+      <mat-form-field
+        class="margin-right email-form-field"
+        appearance="outline"
+        [ngStyle]="NPStreakStyle"
+      >
+        <mat-label>PornFree Streak</mat-label>
+        <input
+          #NPStreakEditor
+          type="number"
+          matInput
+          placeholder=" "
+          formControlName="NPStreak"
+        />
+        <mat-error *ngIf="NPStreakForm.controls.NPStreak.hasError('required')"
+          >Please enter a streak.
+        </mat-error>
+        <mat-error *ngIf="NPStreakForm.controls.NPStreak.hasError('min')">
+          Your streak cannot be negative.
+        </mat-error>
+        <mat-error *ngIf="NPStreakForm.controls.NPStreak.hasError('max')">
+          We currently limit the amount you can enter manually. Please send us a
+          message.
+        </mat-error>
+        <mat-icon matPrefix class="margin-right">calendar_today</mat-icon>
+      </mat-form-field>
+    </div>
+  </form>
+
+  <form
+    class="NFStreakForm"
+    [formGroup]="NFStreakForm"
+    (ngSubmit)="onSaveNFStreak()"
+  >
+    <div class="email-container">
+      <div class="email-edit-buttons">
+        <button
+          type="button"
+          (click)="onEditNFStreak()"
+          *ngIf="!isEditNFStreak"
+          mat-raised-button
+          mat-button
+          color="primary"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+        <div class="edit-buttons-container">
+          <button
+            type="submit"
+            *ngIf="isEditNFStreak"
+            [disabled]="!NFStreakForm.valid || areButtonsDisabled"
+            mat-raised-button
+            mat-button
+            class="margin-right margin-bottom-mobile done-button"
+          >
+            <mat-icon>done</mat-icon>
+          </button>
+          <button
+            type="button"
+            (click)="onCancelEditNFStreak()"
+            *ngIf="isEditNFStreak"
+            mat-raised-button
+            mat-button
+            color="warn"
+          >
+            <mat-icon>close</mat-icon>
+          </button>
+        </div>
+      </div>
+      <mat-form-field
+        class="margin-right email-form-field"
+        appearance="outline"
+        [ngStyle]="NFStreakStyle"
+      >
+        <mat-label>PMO Streak</mat-label>
+        <input
+          #NFStreakEditor
+          type="number"
+          matInput
+          placeholder=" "
+          formControlName="NFStreak"
+        />
+        <mat-error *ngIf="NFStreakForm.controls.NFStreak.hasError('required')"
+          >Please enter a streak.
+        </mat-error>
+        <mat-error *ngIf="NFStreakForm.controls.NFStreak.hasError('min')">
+          Your streak cannot be negative.
+        </mat-error>
+        <mat-error *ngIf="NFStreakForm.controls.NFStreak.hasError('max')">
+          We currently limit the amount you can enter manually. Please send us a
+          message.
+        </mat-error>
+        <mat-icon matPrefix class="margin-right">calendar_today</mat-icon>
+      </mat-form-field>
+    </div>
+  </form>
+
+  <h2 mat-dialog-title class="title">Time zone</h2>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Currently selected</mat-label>
+    <mat-icon matPrefix class="margin-right">schedule</mat-icon>
+
+    <mat-select
+      [(ngModel)]="selectedTimeZone"
+      (selectionChange)="onSelectTimeZone()"
+    >
+      <mat-option *ngFor="let timeZone of timeZones" [value]="timeZone.value">
+        <div>
+          {{ timeZone.label }}
+          ({{ currentTime(timeZone.value) }})
+        </div>
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <h2 mat-dialog-title class="title">Records</h2>
+  <p>
+    <mat-form-field appearance="outline" class="disabled-input-color">
+      <mat-label class="disabled-input-color">PornFree</mat-label>
+      <mat-icon matPrefix class="margin-right">person</mat-icon>
+      <input matInput [value]="NPRecord" readonly />
+    </mat-form-field>
+  </p>
+
+  <p>
+    <mat-form-field appearance="outline" class="disabled-input-color">
+      <mat-label class="disabled-input-color">PMO</mat-label>
+      <mat-icon matPrefix class="margin-right">person</mat-icon>
+      <input matInput [value]="NFRecord" readonly />
+    </mat-form-field>
+  </p>
+
+  <app-article-manager *ngIf="isAdminConnected"></app-article-manager>
+</div>

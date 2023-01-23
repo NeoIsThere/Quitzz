@@ -1,0 +1,11 @@
+<button type="button" mat-icon-button (click)="openInboxDialog()">
+  <mat-icon
+    [matBadgeHidden]="nUnreadMessages <= 0"
+    [matBadge]="nUnreadMessages"
+    matBadgeOverlap="true"
+    matBadgePosition="before"
+    matBadgeColor="accent"
+    matBadgeSize="small"
+    >mail</mat-icon
+  >
+</button>

@@ -1,0 +1,26 @@
+mat-expansion-panel {
+  background-color: #0d47a1;
+  font-weight: 500;
+  color: white;
+  margin-bottom: 20px;
+}
+
+.outline:last-child {
+  margin-bottom: 0px;
+}
+
+.title {
+  color: var(--title-color);
+  font-size: 28px;
+}
+
+.outline {
+  border: 3px solid rgb(174, 174, 174);
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.container {
+  margin: 10px;
+}

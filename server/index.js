@@ -102,7 +102,7 @@ async function main() {
 
   //setupSocketIO(); //chat is disabled for now
 
-  httpServer.listen(8080, () => logger.log("V.01-20-2023; server listening on port 8080"));
+  httpServer.listen(8080, () => logger.log("V.02-27-2023; server listening on port 8080"));
 }
 
 function formatLog(tokens, req, res) {

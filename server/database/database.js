@@ -836,7 +836,7 @@ async function relapse(username, category) {
   const averageToUse = category + "streakAverage";
   const nRelapseToUse = "n" + category + "relapse";
 
-  user[averageToUse] = (user[averageToUse] * user[nRelapseToUse] + user[countToReset]) / ++user[nRelapseToUse];
+  user[averageToUse] = Math.round((user[averageToUse] * user[nRelapseToUse] + user[countToReset]) / ++user[nRelapseToUse]);
   user[countToReset] = 0;
 
   const currentDate = formattedCurrentDate(user.timeZone);
